@@ -16,5 +16,5 @@
     file: path={{ /usr/test}}/backup state=directory mode=755
 
   - name: Zipping files
-    shell: "zip -r {{ /usr/test/f1.txt }}/backup/{{ backup }}_files_{{ timestamp }}.zip {{ usr }}/{{ backup }}"
+    shell: "zip -r {{ /usr/test }}/backup/{{ backup }}_files_{{ timestamp }}.zip {{ usr/test }}/{{ backup }}"
 
