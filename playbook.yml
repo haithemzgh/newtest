@@ -17,5 +17,5 @@
     become: yes
     archive:
        path: /usr/test/
-       dest: /usr/test/backup_{{ timestamp }}.tar  
+       dest: /usr/backup_{{ timestamp }}.tar  
        format: tar
