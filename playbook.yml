@@ -1,11 +1,20 @@
 #playbook
+---
 - hosts: all
   tasks:
-    - name: ensure nginx is at the latest version
-      yum: name=nginx state=latest
-    - name: start nginx
-      service:
-          name: nginx
-          state: started
-      become: true
+  - name: Getting timestamp
+    shell: date +'%Y%m%d%H%M%S'
+    register: timestamp_raw
+
+  - name: Getting name for backup
+    set_fact: timestamp={{ timestamp_raw.stdout }}
+
+   #- name: Deleting old backup files
+   # file: path={{ /usr/test }}/backup state=absent
+
+  - name: Create backup directory
+    file: path={{ /usr/test}}/backup state=directory mode=755
+
+  - name: Zipping files
+    shell: "zip -r {{ /usr/test/f1.txt }}/backup/{{ backup }}_files_{{ timestamp }}.zip {{ /usr }}/{{ backup }}"
 
