@@ -16,6 +16,6 @@
   - name: Compress Directory contents
     become: yes
     archive:
-       path: /usr/test/
+       path: /usr/test
        dest: /usr/backup_{{ timestamp }}.tar  
        format: tar
