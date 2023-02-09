@@ -1,6 +1,7 @@
 #playbook
 ---
-- hosts: all
+- name: Ansible archive Examples
+  hosts: all
   tasks:
   - name: Getting timestamp
     shell: date +'%Y%m%d%H%M%S'
@@ -12,9 +13,9 @@
    #- name: Deleting old backup files
    # file: path={{ /usr/test }}/backup state=absent
 
-  - name: Create backup directory
-    file: path={{ /usr/test}}/backup state=directory mode=755
-
-  - name: Zipping files
-    shell: "zip -r {{ /usr/test }}/backup/{{ backup }}_files_{{ timestamp }}.zip {{ usr/test }}/{{ backup }}"
-
+  - name: Compress Directory contents
+    become: yes
+    archive:
+       path: /usr/test/
+       dest: /usr/test/backup_{{ timestamp }}.tar  
+       format: tar
