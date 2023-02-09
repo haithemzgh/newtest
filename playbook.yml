@@ -1,4 +1,3 @@
-#playbook
 ---
 - name: Ansible archive Examples
   hosts: all
@@ -9,9 +8,6 @@
 
   - name: Getting name for backup
     set_fact: timestamp={{ timestamp_raw.stdout }}
-
-   #- name: Deleting old backup files
-   # file: path={{ /usr/test }}/backup state=absent
 
   - name: Compress Directory contents
     become: yes
