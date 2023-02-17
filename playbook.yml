@@ -10,10 +10,10 @@
     set_fact: timestamp={{ timestamp_raw.stdout }}
     
   - name: Wait for 1 Minute
-      pause:
+    pause:
         seconds: 120
-      register: pause_result
-      debug:
+    register: pause_result
+    debug:
         msg: "set wait 120 seconds"
 
   - name: Display Result
