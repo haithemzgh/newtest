@@ -5,23 +5,19 @@
     - name: Getting timestamp
       shell: date +'%Y%m%d%'
       register: timestamp_raw
-    debug:
-      msg: "Getting system date "
 
   - name: Getting name for backup
     set_fact: timestamp={{ timestamp_raw.stdout }}
-    debug:
-        msg: "set var date"
     
-   - name: Wait for 1 Minute
+  - name: Wait for 1 Minute
       pause:
         seconds: 120
       register: pause_result
       debug:
         msg: "set wait 120 seconds"
 
-    - name: Display Result
-      debug:
+  - name: Display Result
+    debug:
         var: pause_result
         msg: "waiting 2 minits"
 
@@ -31,5 +27,4 @@
        path: /usr/test
        dest: /usr/backup_{{ timestamp }}.tar  
        format: tar
-    debug:
-        msg: "Backup excution"
+    
