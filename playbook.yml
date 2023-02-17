@@ -5,8 +5,8 @@
   - name: Getting timestamp
     shell: date +'%Y%m%d%'
     register: timestamp_raw
-   debug:
-        msg: "Getting system date "
+  debug:
+    msg: "Getting system date "
 
   - name: Getting name for backup
     set_fact: timestamp={{ timestamp_raw.stdout }}
