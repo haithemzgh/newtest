@@ -6,25 +6,24 @@
       shell: date +'%Y%m%d%'
       register: timestamp_raw
 
-  - name: Getting name for backup
-    set_fact: timestamp={{ timestamp_raw.stdout }}
+    - name: Getting name for backup
+      set_fact: timestamp={{ timestamp_raw.stdout }}
     
-  - name: Wait for 1 Minute
-    pause:
-        seconds: 120
-    register: pause_result
-    debug:
-        msg: "set wait 120 seconds"
+    - name: Wait for 1 Minute
+      pause:
+          seconds: 120
+      register: pause_result
+      debug:
+          msg: "set wait 120 seconds"
 
-  - name: Display Result
-    debug:
+    - name: Display Result
+      debug:
         var: pause_result
         msg: "waiting 2 minits"
 
-  - name: Compress Directory contents
-    become: yes
-    archive:
-       path: /usr/test
-       dest: /usr/backup_{{ timestamp }}.tar  
-       format: tar
-    
+    - name: Compress Directory contents
+      become: yes
+      archive:
+         path: /usr/test
+         dest: /usr/backup_{{ timestamp }}.tar  
+         format: tar
