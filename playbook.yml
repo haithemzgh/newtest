@@ -14,6 +14,11 @@
         pause:
           seconds: 120
 
-      - name: Wait for 3 minutes
-        pause:
-          seconds: 180
+      - name: Wait for task to finish
+        async_status:
+           jid: "{{ ansible_job_id }}"
+           mode: finished
+        register: task_result
+     
+      - name: excute task
+        command: echo "Hello, world!"
