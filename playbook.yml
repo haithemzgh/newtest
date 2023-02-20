@@ -9,6 +9,10 @@
       - name: Wait for 2 minutes
         pause:
           seconds: 120
+          
+      - name: Wait for 2 minutes
+        pause:
+          seconds: 120
 
       - name: Wait for 3 minutes
         pause:
