@@ -1,24 +1,9 @@
 ---
-  - name: Ansible archive Examples
-    hosts: all
-    tasks:
-      - name: Getting timestamp
-        shell: date +'%Y%m%d%'
-        register: timestamp_raw
-        
-      - name: Wait for 2 minutes
-        pause:
-          seconds: 120
-          
-      - name: Wait for 2 minutes
-        pause:
-          seconds: 120
-
-      - name: Wait for task to finish
-        async_status:
-           jid: "{{ ansible_job_id }}"
-           mode: finished
-        register: task_result
-     
-      - name: excute task
-        command: echo "Hello, world!"
+- name: Download and extract JMeter
+  get_url:
+    url: "https://mirror.olnevhost.net/pub/apache/jmeter/binaries/apache-jmeter-5.4.1.tgz"
+    dest: "/home/hz/jmeter"
+  become: yes
+- name: Extract JMeter archive
+  unarchive:
+    src: "/home/hz/jmeter/apache-jmeter-5"
